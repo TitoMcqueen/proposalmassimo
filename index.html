@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Bots - Proposta Digitalizzazione Massimo</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #333;
+        }
+
+        .company-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .main-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #cccccc;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .period-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: #000;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .language-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .lang-btn {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(90deg, #009246, #ffffff, #ce2b37);
+            color: #000;
+            border: none;
+            font-weight: 600;
+        }
+
+        .lang-btn:hover {
+            background: linear-gradient(90deg, #009246, #ffffff, #ce2b37);
+            color: #000;
+            border: none;
+        }
+
+        .menu-link-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #009246, #ce2b37);
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .menu-link-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 146, 70, 0.3);
+        }
+
+        .content {
+            display: grid;
+            gap: 40px;
+        }
+
+        .section {
+            background: #111111;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 35px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00d4ff, #0099cc);
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 8px;
+            height: 8px;
+            background: #00d4ff;
+            border-radius: 50%;
+        }
+
+        .subsection {
+            margin-bottom: 25px;
+        }
+
+        .subsection-title {
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .feature-list li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+            color: #e0e0e0;
+        }
+
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            background: #ff6b35;
+            border-radius: 50%;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border: 1px solid #00d4ff;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .highlight-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #00d4ff;
+            margin-bottom: 15px;
+        }
+
+        .highlight-text {
+            color: #e0e0e0;
+            line-height: 1.7;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid #333;
+        }
+
+        .timeline-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .timeline-month {
+            font-weight: 600;
+            color: #00d4ff;
+            font-size: 0.9rem;
+        }
+
+        .timeline-task {
+            font-size: 0.8rem;
+            color: #cccccc;
+            margin-top: 5px;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-radius: 12px;
+            border: 1px solid #00d4ff;
+        }
+
+        .cta-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .cta-text {
+            color: #cccccc;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .scenario-content {
+            display: grid;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .scenario-block {
+            background: #0a0a0a;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .scenario-subtitle {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.2rem;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+            
+            .timeline {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="company-logo">BUSINESS BOTS</div>
+            <h1 class="main-title" id="mainTitle">Proposta di Digitalizzazione</h1>
+            <p class="subtitle" id="subtitle">Strategia Completa per Massimo Pizzeria</p>
+            <div class="period-badge" id="periodBadge">Ottobre - Dicembre 2024 | Mantenibile fino al 2026</div>
+            
+            <div class="language-toggle">
+                <button class="lang-btn active" onclick="switchLanguage('it')">Italiano</button>
+                <button class="lang-btn" onclick="switchLanguage('es')">Español</button>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Website Section -->
+            <div class="section">
+                <h2 class="section-title">
+                    <div class="section-icon"></div>
+                    <span id="websiteTitle">Sito Web Professionale</span>
+                </h2>
+                
+                <div class="subsection">
+                    <div class="subsection-title" id="websiteSectionsTitle">Sezioni Strategiche:</div>
+                    <ul class="feature-list" id="websiteSectionsList">
+                        <li>About Us: Storia autentica e filosofia di Massimo</li>
+                        <li>Menu Digitale: Formato eBook interattivo con sistema di ordinazione</li>
+                        <li>Orari: Visualizzazione chiara (20:00-00:00, weekend 21:00-00:00)</li>
+                        <li>Posizione: Integrazione Google Maps per Magaluf</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title" id="websiteFeaturesTitle">Funzionalità Avanzate:</div>
+                    <ul class="feature-list" id="websiteFeaturesList">
+                        <li>Menu a tendina responsive per tutti i dispositivi</li>
+                        <li>Integrazione WhatsApp per contatto diretto</li>
+                        <li>Sistema di pre-ordini collegato</li>
+                        <li>Ottimizzazione SEO per ricerche locali</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Order System Section -->
+            <div class="section">
+                <h2 class="section-title">
+                    <div class="section-icon"></div>
+                    <span id="orderTitle">Sistema di Ordinazione Intelligente</span>
+                </h2>
+                
+                <ul class="feature-list" id="orderList">
+                    <li>Piattaforma dedicata per pre-ordini e takeaway</li>
+                    <li>Menu digitale sincronizzato con il database centrale</li>
+                    <li>Conferma automatica via WhatsApp</li>
+                    <li>Validazione ordini da parte di Massimo</li>
+                    <li>Gestione code e tempi di attesa</li>
+                </ul>
+            </div>
+
+            <!-- Google Drive Section -->
+            <div class="section">
+                <h2 class="section-title">
+                    <div class="section-icon"></div>
+                    <span id="driveTitle">Centro di Controllo Digitale</span>
+                </h2>
+                
+                <ul class="feature-list" id="driveList">
+                    <li>Documento "About Massimo": Brand story e valori aziendali</li>
+                    <li>Menu Master (Excel): Database centralizzato per aggiornamenti</li>
+                    <li>Libreria Assets: Loghi, banner e materiali grafici professionali</li>
+                    <li>Accesso team condiviso per gestione collaborativa</li>
+                    <li>Backup automatico e versionamento</li>
+                </ul>
+            </div>
+
+            <!-- Menu Access Section -->
+            <div class="section">
+                <h2 class="section-title">
+                    <div class="section-icon"></div>
+                    <span id="menuAccessTitle">Accesso Menu Centralizzato</span>
+                </h2>
+                
+                <div class="subsection">
+                    <div class="subsection-title" id="menuAccessSubtitle">Database Menu Attuale:</div>
+                    <ul class="feature-list" id="menuAccessList">
+                        <li>Menu completo gestito in Google Sheets</li>
+                        <li>Aggiornamenti in tempo reale per tutto il team</li>
+                        <li>Sincronizzazione automatica con il sito web</li>
+                        <li>Controllo versioni e backup automatico</li>
+                    </ul>
+                    
+                    <div style="margin-top: 20px; text-align: center;">
+                        <a href="https://docs.google.com/spreadsheets/d/1vOG3eubQLEJmtqGOMfJqmbGJEBFrb7Hv7205bUQvRWE/edit?usp=sharing" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="menu-link-btn" 
+                           id="menuLinkBtn">
+                            Visualizza Menu Completo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Promotions Section -->
+            <div class="section">
+                <h2 class="section-title">
+                    <div class="section-icon"></div>
+                    <span id="promoTitle">Campagne Promozionali Stagionali</span>
+                </h2>
+                
+                <div class="subsection">
+                    <div class="subsection-title" id="promoPackagesTitle">Pacchetti Invernali:</div>
+                    <ul class="feature-list" id="promoPackagesList">
+                        <li>Pacchetto Coppia: 2 pizze + 2 bevande</li>
+                        <li>Pacchetto Famiglia: 4 pizze + 4 bevande</li>
+                        <li>Design per flyers, annunci social e materiali promozionali</li>
+                        <li>Strategia di marketing digitale integrata</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="section">
+                <h2 class="section-title">
+                    <div class="section-icon"></div>
+                    <span id="timelineTitle">Cronoprogramma di Implementazione</span>
+                </h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-month" id="oct">OTTOBRE</div>
+                        <div class="timeline-task" id="octTask">Setup & Design</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-month" id="nov">NOVEMBRE</div>
+                        <div class="timeline-task" id="novTask">Sviluppo & Test</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-month" id="dec">DICEMBRE</div>
+                        <div class="timeline-task" id="decTask">Launch & Ottimizzazione</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Highlight Box -->
+        <div class="highlight-box">
+            <div class="highlight-title" id="highlightTitle">Visione Strategica Business Bots</div>
+            <p class="highlight-text" id="highlightText">
+                Il sito web rappresenta la vetrina digitale (informazioni, menu, ordini e localizzazione), 
+                mentre Google Drive funziona come centro nevralgico operativo (contenuti, menu aggiornabile, 
+                risorse grafiche). L'integrazione WhatsApp garantisce comunicazione diretta e gestione ordini 
+                in tempo reale. Questa architettura è progettata per crescere e adattarsi fino al 2026.
+            </p>
+        </div>
+
+        <!-- Future Scenario Section -->
+        <div class="section">
+            <h2 class="section-title">
+                <div class="section-icon"></div>
+                <span id="scenarioTitle">Scenario Post-Implementazione</span>
+            </h2>
+            
+            <div class="scenario-content">
+                <div class="scenario-block">
+                    <h4 class="scenario-subtitle" id="scenarioCustomerTitle">Esperienza Cliente:</h4>
+                    <ul class="feature-list" id="scenarioCustomerList">
+                        <li>Il cliente trova Massimo su Google Maps e accede al sito web professionale</li>
+                        <li>Naviga il menu digitale interattivo e seleziona le pizze desiderate</li>
+                        <li>Effettua il pre-ordine con orario di ritiro personalizzato</li>
+                        <li>Riceve conferma automatica su WhatsApp con dettagli dell'ordine</li>
+                        <li>Arriva al momento giusto e ritira la pizza calda e pronta</li>
+                    </ul>
+                </div>
+                
+                <div class="scenario-block">
+                    <h4 class="scenario-subtitle" id="scenarioMassimoTitle">Gestione Massimo:</h4>
+                    <ul class="feature-list" id="scenarioMassimoList">
+                        <li>Riceve notifiche ordini in tempo reale su WhatsApp</li>
+                        <li>Gestisce la produzione con visibilità completa della coda</li>
+                        <li>Aggiorna prezzi e disponibilità direttamente dal Google Sheet</li>
+                        <li>Monitora le performance attraverso analytics integrati</li>
+                        <li>Lancia promozioni stagionali con un click</li>
+                    </ul>
+                </div>
+                
+                <div class="scenario-block">
+                    <h4 class="scenario-subtitle" id="scenarioBusinessTitle">Crescita Business:</h4>
+                    <ul class="feature-list" id="scenarioBusinessList">
+                        <li>Riduzione del 60% dei tempi di attesa grazie ai pre-ordini</li>
+                        <li>Aumento del 40% degli ordini durante le ore di punta</li>
+                        <li>Miglioramento della customer satisfaction e recensioni online</li>
+                        <li>Database clienti per marketing diretto e fidelizzazione</li>
+                        <li>Scalabilità del sistema per espansione futura</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h3 class="cta-title" id="ctaTitle">Pronto per il Futuro Digitale?</h3>
+            <p class="cta-text" id="ctaText">
+                Trasformiamo insieme la presenza digitale di Massimo in un ecosistema completo e sostenibile.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            it: {
+                mainTitle: "Proposta di Digitalizzazione",
+                subtitle: "Strategia Completa per Massimo Pizzeria",
+                periodBadge: "Ottobre - Dicembre 2024 | Mantenibile fino al 2026",
+                websiteTitle: "Sito Web Professionale",
+                websiteSectionsTitle: "Sezioni Strategiche:",
+                websiteSectionsList: [
+                    "About Us: Storia autentica e filosofia di Massimo",
+                    "Menu Digitale: Formato eBook interattivo con sistema di ordinazione",
+                    "Orari: Visualizzazione chiara (20:00-00:00, weekend 21:00-00:00)",
+                    "Posizione: Integrazione Google Maps per Magaluf"
+                ],
+                websiteFeaturesTitle: "Funzionalità Avanzate:",
+                websiteFeaturesList: [
+                    "Menu a tendina responsive per tutti i dispositivi",
+                    "Integrazione WhatsApp per contatto diretto",
+                    "Sistema di pre-ordini collegato",
+                    "Ottimizzazione SEO per ricerche locali"
+                ],
+                orderTitle: "Sistema di Ordinazione Intelligente",
+                orderList: [
+                    "Piattaforma dedicata per pre-ordini e takeaway",
+                    "Menu digitale sincronizzato con il database centrale",
+                    "Conferma automatica via WhatsApp",
+                    "Validazione ordini da parte di Massimo",
+                    "Gestione code e tempi di attesa"
+                ],
+                driveTitle: "Centro di Controllo Digitale",
+                driveList: [
+                    "Documento \"About Massimo\": Brand story e valori aziendali",
+                    "Menu Master (Excel): Database centralizzato per aggiornamenti",
+                    "Libreria Assets: Loghi, banner e materiali grafici professionali",
+                    "Accesso team condiviso per gestione collaborativa",
+                    "Backup automatico e versionamento"
+                ],
+                promoTitle: "Campagne Promozionali Stagionali",
+                promoPackagesTitle: "Pacchetti Invernali:",
+                promoPackagesList: [
+                    "Pacchetto Coppia: 2 pizze + 2 bevande",
+                    "Pacchetto Famiglia: 4 pizze + 4 bevande",
+                    "Design per flyers, annunci social e materiali promozionali",
+                    "Strategia di marketing digitale integrata"
+                ],
+                timelineTitle: "Cronoprogramma di Implementazione",
+                oct: "OTTOBRE",
+                octTask: "Setup & Design",
+                nov: "NOVEMBRE",
+                novTask: "Sviluppo & Test",
+                dec: "DICEMBRE",
+                decTask: "Launch & Ottimizzazione",
+                menuAccessTitle: "Accesso Menu Centralizzato",
+                menuAccessSubtitle: "Database Menu Attuale:",
+                menuAccessList: [
+                    "Menu completo gestito in Google Sheets",
+                    "Aggiornamenti in tempo reale per tutto il team",
+                    "Sincronizzazione automatica con il sito web",
+                    "Controllo versioni e backup automatico"
+                ],
+                menuLinkBtn: "Visualizza Menu Completo",
+                scenarioTitle: "Scenario Post-Implementazione",
+                scenarioCustomerTitle: "Esperienza Cliente:",
+                scenarioCustomerList: [
+                    "Il cliente trova Massimo su Google Maps e accede al sito web professionale",
+                    "Naviga il menu digitale interattivo e seleziona le pizze desiderate",
+                    "Effettua il pre-ordine con orario di ritiro personalizzato",
+                    "Riceve conferma automatica su WhatsApp con dettagli dell'ordine",
+                    "Arriva al momento giusto e ritira la pizza calda e pronta"
+                ],
+                scenarioMassimoTitle: "Gestione Massimo:",
+                scenarioMassimoList: [
+                    "Riceve notifiche ordini in tempo reale su WhatsApp",
+                    "Gestisce la produzione con visibilità completa della coda",
+                    "Aggiorna prezzi e disponibilità direttamente dal Google Sheet",
+                    "Monitora le performance attraverso analytics integrati",
+                    "Lancia promozioni stagionali con un click"
+                ],
+                scenarioBusinessTitle: "Crescita Business:",
+                scenarioBusinessList: [
+                    "Riduzione del 60% dei tempi di attesa grazie ai pre-ordini",
+                    "Aumento del 40% degli ordini durante le ore di punta",
+                    "Miglioramento della customer satisfaction e recensioni online",
+                    "Database clienti per marketing diretto e fidelizzazione",
+                    "Scalabilità del sistema per espansione futura"
+                ],
+                highlightTitle: "Visione Strategica Business Bots",
+                highlightText: "Il sito web rappresenta la vetrina digitale (informazioni, menu, ordini e localizzazione), mentre Google Drive funziona come centro nevralgico operativo (contenuti, menu aggiornabile, risorse grafiche). L'integrazione WhatsApp garantisce comunicazione diretta e gestione ordini in tempo reale. Questa architettura è progettata per crescere e adattarsi fino al 2026.",
+                ctaTitle: "Pronto per il Futuro Digitale?",
+                ctaText: "Trasformiamo insieme la presenza digitale di Massimo in un ecosistema completo e sostenibile."
+            },
+            es: {
+                mainTitle: "Propuesta de Digitalización",
+                subtitle: "Estrategia Integral para Massimo Pizzería",
+                periodBadge: "Octubre - Diciembre 2024 | Mantenible hasta 2026",
+                websiteTitle: "Sitio Web Profesional",
+                websiteSectionsTitle: "Secciones Estratégicas:",
+                websiteSectionsList: [
+                    "About Us: Historia auténtica y filosofía de Massimo",
+                    "Menú Digital: Formato eBook interactivo con sistema de pedidos",
+                    "Horarios: Visualización clara (20:00-00:00, fines de semana 21:00-00:00)",
+                    "Ubicación: Integración Google Maps para Magaluf"
+                ],
+                websiteFeaturesTitle: "Funcionalidades Avanzadas:",
+                websiteFeaturesList: [
+                    "Menú desplegable responsive para todos los dispositivos",
+                    "Integración WhatsApp para contacto directo",
+                    "Sistema de pre-pedidos conectado",
+                    "Optimización SEO para búsquedas locales"
+                ],
+                orderTitle: "Sistema de Pedidos Inteligente",
+                orderList: [
+                    "Plataforma dedicada para pre-pedidos y takeaway",
+                    "Menú digital sincronizado con la base de datos central",
+                    "Confirmación automática vía WhatsApp",
+                    "Validación de pedidos por parte de Massimo",
+                    "Gestión de colas y tiempos de espera"
+                ],
+                driveTitle: "Centro de Control Digital",
+                driveList: [
+                    "Documento \"About Massimo\": Historia de marca y valores empresariales",
+                    "Menú Master (Excel): Base de datos centralizada para actualizaciones",
+                    "Librería Assets: Logos, banners y materiales gráficos profesionales",
+                    "Acceso compartido del equipo para gestión colaborativa",
+                    "Backup automático y versionado"
+                ],
+                promoTitle: "Campañas Promocionales Estacionales",
+                promoPackagesTitle: "Paquetes de Invierno:",
+                promoPackagesList: [
+                    "Paquete Pareja: 2 pizzas + 2 bebidas",
+                    "Paquete Familia: 4 pizzas + 4 bebidas",
+                    "Diseño para flyers, anuncios sociales y materiales promocionales",
+                    "Estrategia de marketing digital integrada"
+                ],
+                timelineTitle: "Cronograma de Implementación",
+                oct: "OCTUBRE",
+                octTask: "Setup & Diseño",
+                nov: "NOVIEMBRE",
+                novTask: "Desarrollo & Pruebas",
+                dec: "DICIEMBRE",
+                decTask: "Lanzamiento & Optimización",
+                highlightTitle: "Visión Estratégica Business Bots",
+                highlightText: "El sitio web representa la vitrina digital (información, menú, pedidos y localización), mientras que Google Drive funciona como centro neurálgico operativo (contenidos, menú actualizable, recursos gráficos). La integración WhatsApp garantiza comunicación directa y gestión de pedidos en tiempo real. Esta arquitectura está diseñada para crecer y adaptarse hasta 2026.",
+                menuAccessTitle: "Acceso Menú Centralizado",
+                menuAccessSubtitle: "Base de Datos del Menú Actual:",
+                menuAccessList: [
+                    "Menú completo gestionado en Google Sheets",
+                    "Actualizaciones en tiempo real para todo el equipo",
+                    "Sincronización automática con el sitio web",
+                    "Control de versiones y backup automático"
+                ],
+                menuLinkBtn: "Ver Menú Completo",
+                scenarioTitle: "Escenario Post-Implementación",
+                scenarioCustomerTitle: "Experiencia del Cliente:",
+                scenarioCustomerList: [
+                    "El cliente encuentra Massimo en Google Maps y accede al sitio web profesional",
+                    "Navega el menú digital interactivo y selecciona las pizzas deseadas",
+                    "Realiza el pre-pedido con horario de recogida personalizado",
+                    "Recibe confirmación automática en WhatsApp con detalles del pedido",
+                    "Llega en el momento justo y recoge la pizza caliente y lista"
+                ],
+                scenarioMassimoTitle: "Gestión de Massimo:",
+                scenarioMassimoList: [
+                    "Recibe notificaciones de pedidos en tiempo real en WhatsApp",
+                    "Gestiona la producción con visibilidad completa de la cola",
+                    "Actualiza precios y disponibilidad directamente desde Google Sheet",
+                    "Monitorea el rendimiento a través de analytics integrados",
+                    "Lanza promociones estacionales con un click"
+                ],
+                scenarioBusinessTitle: "Crecimiento del Negocio:",
+                scenarioBusinessList: [
+                    "Reducción del 60% de los tiempos de espera gracias a los pre-pedidos",
+                    "Aumento del 40% de los pedidos durante las horas punta",
+                    "Mejora de la satisfacción del cliente y reseñas online",
+                    "Base de datos de clientes para marketing directo y fidelización",
+                    "Escalabilidad del sistema para expansión futura"
+                ],
+                ctaTitle: "¿Listo para el Futuro Digital?",
+                ctaText: "Transformemos juntos la presencia digital de Massimo en un ecosistema completo y sostenible."
+            }
+        };
+
+        function switchLanguage(lang) {
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Update text content
+            const t = translations[lang];
+            
+            // Simple text updates
+            Object.keys(t).forEach(key => {
+                const element = document.getElementById(key);
+                if (element && typeof t[key] === 'string') {
+                    element.textContent = t[key];
+                }
+            });
+
+            // Update lists
+            const listUpdates = [
+                'websiteSectionsList',
+                'websiteFeaturesList', 
+                'orderList',
+                'driveList',
+                'promoPackagesList',
+                'menuAccessList',
+                'scenarioCustomerList',
+                'scenarioMassimoList',
+                'scenarioBusinessList'
+            ];
+
+            listUpdates.forEach(listId => {
+                const list = document.getElementById(listId);
+                if (list && t[listId]) {
+                    list.innerHTML = t[listId].map(item => `<li>${item}</li>`).join('');
+                }
+            });
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98554834470b0329',t:'MTc1ODkxNjE0MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
